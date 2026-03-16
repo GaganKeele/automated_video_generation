@@ -1,23 +1,9 @@
-"""
-video_builder.py
-Uses MoviePy to combine slide images + audio into final .mp4 video
-"""
-
 import os
 from config import CONFIG
 
 
 def build_video(slide_paths: list, audio_paths: list,
                 output_path: str, slide_duration: int = 5):
-    """
-    Build final MP4 video from slide images and audio files.
-
-    Args:
-        slide_paths:    List of paths to slide PNG images
-        audio_paths:    List of paths to audio WAV files (can be None)
-        output_path:    Where to save the final MP4
-        slide_duration: Seconds per slide if no audio
-    """
     try:
         from moviepy.editor import (
             ImageClip, AudioFileClip, CompositeAudioClip,

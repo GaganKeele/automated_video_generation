@@ -1,7 +1,3 @@
-"""
-config.py - All configurable parameters in one place
-Change these values to customize your video output
-"""
 
 CONFIG = {
     # Input / Output
@@ -9,22 +5,22 @@ CONFIG = {
     "output_file":    "output/explainer_video.mp4",
 
     # Video settings
-    "width":          1280,       # Resolution width (configurable)
-    "height":         720,        # Resolution height
-    "fps":            24,         # Frames per second
-    "slide_duration": 5,          # Seconds per slide (configurable)
+    "width":          1280,      
+    "height":         720,       
+    "fps":            24,        
+    "slide_duration": 5,         
 
     # Font settings
-    "font_size":      42,         # Main text font size (configurable)
-    "title_font_size": 52,        # Title font size
-    "font_color":     (255, 255, 255),   # White text
-    "bg_color":       (15, 23, 42),      # Dark navy background
+    "font_size":      42,        
+    "title_font_size": 52,       
+    "font_color":     (255, 255, 255),  
+    "bg_color":       (15, 23, 42),     
 
     # Slide appearance
-    "padding":        80,         # Padding around text in pixels
-    "line_spacing":   1.4,        # Space between lines
+    "padding":        80,         
+    "line_spacing":   1.4,        
 
     # Audio settings
-    "tts_rate":       150,        # Speech rate (words per minute, configurable)
-    "silence_duration": 0.5,      # Silence between slides (seconds)
+    "tts_rate":       150,        
+    "silence_duration": 0.5,      
 }

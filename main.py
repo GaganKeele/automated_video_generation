@@ -7,12 +7,8 @@ from audio_generator import generate_audio
 from video_builder import build_video
 
 def main():
-    print("=" * 55)
-    print("  Automated Explainer Video Generator")
-    print("  Assessment 2 - AI Intern")
-    print("=" * 55)
 
-    # ── STEP 1: Read Input ──────────────────────────────────
+
     input_file = CONFIG["input_file"]
 
     if not os.path.exists(input_file):
@@ -29,17 +25,14 @@ def main():
 
     print(f"\nLoaded input from: {input_file}")
 
-    # ── STEP 2: Split Text Into Slides ──────────────────────
     print("\nSplitting text into slides...")
     slides = read_and_split_text(raw_text)
     print(f"  Created {len(slides)} slides")
 
-    # ── STEP 3: Create Output Folders ──────────────────────
     os.makedirs("output", exist_ok=True)
     os.makedirs("output/slides", exist_ok=True)
     os.makedirs("output/audio", exist_ok=True)
 
-    # ── STEP 4: Generate Slide Images + Audio ──────────────
     slide_paths = []
     audio_paths = []
 
@@ -66,9 +59,10 @@ def main():
         else:
             print(f"  Audio failed - will use silence")
 
-    # ── STEP 5: Build Final Video ───────────────────────────
     print("\nBuilding final video...")
-    output_video = CONFIG["output_file"]
+    os.makedirs("output", exist_ok=True)
+
+    output_video = CONFIG["output/output_file"]
 
     build_video(
         slide_paths=slide_paths,
@@ -77,7 +71,7 @@ def main():
         slide_duration=CONFIG["slide_duration"]
     )
 
-    # ── STEP 6: Done ────────────────────────────────────────
+    
     print("\n" + "=" * 55)
     print("  VIDEO GENERATION COMPLETE")
     print("=" * 55)

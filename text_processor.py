@@ -1,17 +1,6 @@
-"""
-text_processor.py
-Reads input text and splits it into slides.
-Each blank line = new slide.
-"""
-
 def read_and_split_text(raw_text: str) -> list:
-    """
-    Split raw text into slides.
-    Rules:
-    - Each paragraph (separated by blank line) = one slide
-    - If a paragraph is too long, split into chunks of 25 words
-    - Empty paragraphs are skipped
-    """
+    
+    
     # Split by blank lines first
     paragraphs = [p.strip() for p in raw_text.split('\n\n') if p.strip()]
 

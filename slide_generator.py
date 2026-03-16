@@ -1,8 +1,3 @@
-"""
-slide_generator.py
-Uses Pillow to generate slide images.
-Each slide = dark background + white text + slide number
-"""
 
 from PIL import Image, ImageDraw, ImageFont
 import textwrap
@@ -12,15 +7,6 @@ from config import CONFIG
 
 def generate_slide_image(text: str, slide_number: int,
                           total_slides: int, output_path: str):
-    """
-    Generate a single slide image using Pillow.
-
-    Args:
-        text:         The text to display on the slide
-        slide_number: Current slide number (for progress indicator)
-        total_slides: Total number of slides
-        output_path:  Where to save the PNG file
-    """
     W = CONFIG["width"]
     H = CONFIG["height"]
     bg = CONFIG["bg_color"]
