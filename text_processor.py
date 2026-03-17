@@ -1,6 +1,4 @@
 def read_and_split_text(raw_text: str) -> list:
-    
-    
     # Split by blank lines first
     paragraphs = [p.strip() for p in raw_text.split('\n\n') if p.strip()]
 

@@ -1,14 +1,14 @@
 import os
 from config import CONFIG
-
+from moviepy.editor import (
+    ImageClip, AudioFileClip, CompositeAudioClip,
+    concatenate_videoclips, concatenate_audioclips
+)
 
 def build_video(slide_paths: list, audio_paths: list,
                 output_path: str, slide_duration: int = 5):
     try:
-        from moviepy.editor import (
-            ImageClip, AudioFileClip, CompositeAudioClip,
-            concatenate_videoclips, concatenate_audioclips
-        )
+
 
         clips = []
 

@@ -1,20 +1,14 @@
-"""
-audio_generator.py
-Tries pyttsx3 first (offline), falls back to gTTS (online),
-falls back to silence if both fail.
-"""
 
 import os
 from config import CONFIG
-
+import pyttsx3
+from gtts import gTTS
+import tempfile
+import struct
+import math
 
 def generate_audio(text: str, output_path: str) -> bool:
-    """
-    Generate audio narration for a slide.
-    Tries pyttsx3 first, then gTTS, then silence.
-
-    Returns True if audio was generated, False if silence used.
-    """
+    
     # Try 1 — pyttsx3 (works offline)
     if _try_pyttsx3(text, output_path):
         return True
@@ -30,9 +24,7 @@ def generate_audio(text: str, output_path: str) -> bool:
 
 
 def _try_pyttsx3(text: str, output_path: str) -> bool:
-    """Try generating audio using pyttsx3 (offline TTS)"""
     try:
-        import pyttsx3
         engine = pyttsx3.init()
         engine.setProperty('rate', CONFIG["tts_rate"])
         engine.setProperty('volume', 1.0)
@@ -55,10 +47,7 @@ def _try_pyttsx3(text: str, output_path: str) -> bool:
 
 
 def _try_gtts(text: str, output_path: str) -> bool:
-    """Try generating audio using gTTS (online TTS)"""
     try:
-        from gtts import gTTS
-        import tempfile
 
         # gTTS saves as mp3, convert to wav via temp file
         tts = gTTS(text=text, lang='en', slow=False)
@@ -86,7 +75,6 @@ def _try_gtts(text: str, output_path: str) -> bool:
 
 
 def _generate_silence(output_path: str):
-    """Generate a silent WAV file using FFmpeg as last fallback"""
     duration = CONFIG["slide_duration"]
     cmd = (
         f'ffmpeg -y -f lavfi -i anullsrc=r=44100:cl=mono '
@@ -99,9 +87,6 @@ def _generate_silence(output_path: str):
 
 
 def _create_minimal_wav(output_path: str, duration: float):
-    """Create a minimal silent WAV file without ffmpeg"""
-    import struct
-    import math
 
     sample_rate = 44100
     num_samples = int(sample_rate * duration)
